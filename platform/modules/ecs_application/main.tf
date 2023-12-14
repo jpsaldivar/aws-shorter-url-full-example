@@ -27,6 +27,9 @@ resource "aws_ecs_task_definition" "ecs_task" {
   requires_compatibilities = var.ecs_task.requires_compatibilities
   network_mode             = var.ecs_task.network_mode
   execution_role_arn       = module.ecs_task_execution_role.iam_role_arn
+  #Fargate required
+  cpu                      = var.ecs_task.cpu
+  memory                   = var.ecs_task.memory
 }
 
 resource "aws_ecs_service" "ecs_service" {
