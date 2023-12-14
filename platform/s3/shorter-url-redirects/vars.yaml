@@ -1,0 +1,19 @@
+version: v3.15.1
+module: ""
+
+bucket: "shorter-url-redirects"
+acl   : "private"
+
+control_object_ownership: true
+object_ownership        : "ObjectWriter"
+
+lifecycle_rule: [
+  {
+    enabled : true,
+    id    : "expire_all_files",
+    expiration: {
+      days: 10
+    }
+  }
+]
+  
