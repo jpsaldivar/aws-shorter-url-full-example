@@ -35,7 +35,7 @@ ecs_task:
 
 
 ecs_service: 
-  name: "ecs_service_backend"
+  name: "jpsr-shorter-url"
   cluster: "ecs-cluster-backend"
   launch_type: "FARGATE"
   desired_count: 3
