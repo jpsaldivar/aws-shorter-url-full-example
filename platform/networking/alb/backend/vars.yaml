@@ -1,0 +1,21 @@
+version: v9.2.0
+module: ""
+
+aws_security_group_http:  
+  name: "http"
+  description: "HTTP traffic"
+  vpc_id: "vpc-00393bee3c671e5ef"
+
+
+aws_security_group_egress_all: 
+  name: "egress-all"
+  description: "Allow all outbound traffic"
+  vpc_id: "vpc-00393bee3c671e5ef"
+
+
+alb: 
+  name: "backend-alb"
+  vpc_id: "vpc-00393bee3c671e5ef"
+  internal: false
+  load_balancer_type: "application"
+  subnets: ["subnet-0daeec37e6f97dd27", "subnet-089a0da564d433829", "subnet-0db1f6fa664026f7d"]
