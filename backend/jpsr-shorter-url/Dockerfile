@@ -1,4 +1,4 @@
-FROM node:18.8-alpine3.16 AS base
+FROM node:21.4.0-alpine:3.18 AS base
 
 WORKDIR /app
 
@@ -13,7 +13,7 @@ ENV NODE_ENV production
 RUN yarn install --frozen-lockfile && yarn cache clean
 
 
-FROM node:18.8-alpine3.16
+FROM 21.4.0-alpine:3.18
 
 WORKDIR /app
 
