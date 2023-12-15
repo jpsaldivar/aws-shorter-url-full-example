@@ -2,6 +2,22 @@
 # IaC
 
 
+## Servicios
+A continuación se presenta el listado de servicios habilitados con IaC
+
+|Servicio|Descripción|Directorio|URL| 
+|---|---|---|---|
+|S3| Bucket para archivos estaticos   | `platform/s3/shorter-url-redirects`|[Enlace](https://aws.com)|  
+|ECR| Repositorio para imagenes backend   | `platform/ecr/ecs-images`|[Enlace](https://aws.com)|  
+|ECR| Repositorio para imagenes frontend   | `platform/ecr/ecs-images-front`|[Enlace](https://aws.com)|  
+|ALB| Application load balancer de backend   | `platform/networking/alb/backend`|[Enlace](https://aws.com)|  
+|ALB| Application load balancer de frontend   | `platform/networking/alb/frontend`|[Enlace](https://aws.com)|  
+|VPC| VPC general del proyecto   | `platform/networking/vpc`|[Enlace](https://aws.com)|  
+|ECS| Cluster para aplicaciones backend  | `platform/ecs/backend`|[Enlace](https://aws.com)|  
+|ECS| Cluster para aplicaciones frontend  | `platform/ecs/frontend`|[Enlace](https://aws.com)| 
+|ECS Service| Servicio para aplicaciones backend  | `platform/ecs/backend-app`|[Enlace](https://aws.com)|
+|ECS Service| Servicio para aplicaciones frontend  | `platform/ecs/frontend-app`|[Enlace](https://aws.com)| 
+
 ## Estructura
 
 Todo el contenido de IaC se encuentra bajo la carpeta `platform` y tiene una estructura similar al siguiente ejemplo: 
