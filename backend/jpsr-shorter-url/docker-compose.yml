@@ -1,6 +1,6 @@
 version: "2"
 services:
-  risk:
+  jpsr-shorter-url:
     container_name: api-jpsr-shorter-url-app
     build:
       context: .
