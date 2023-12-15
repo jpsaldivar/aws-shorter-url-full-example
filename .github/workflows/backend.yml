@@ -39,7 +39,10 @@ jobs:
           IMAGE_TAG: ${{ github.sha }}
           ECR_REPOSITORY: ${{ env.app-name }}
         run: |
-          cd backend/${{ env.app-name }}
+          ls -l 
+          cd backend 
+          ls -l
+          cd ${{ env.app-name }}
           docker-compose build ${{ env.app-name }}
           docker-compose push ${{ env.app-name }}
       - name: Generate Task Definition
