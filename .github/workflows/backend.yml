@@ -49,11 +49,10 @@ jobs:
           task-definition: backend/${{ env.app-name }}/.aws/${{ env.environment }}-task-definition.json
           container-name: ${{ env.app-name }}
           image: ${{ steps.login-to-ecr.outputs.registry }}/${{ env.app-name }}:${{ github.sha }}
-          cluster: ${{ env.ecs-cluster }}
       - name: Deploy ECS Service
         uses: aws-actions/amazon-ecs-deploy-task-definition@v1
         with:
           task-definition: ${{ steps.task-def.outputs.task-definition }}
           service: ${{ env.app-name }}
-          cluster: api
+          cluster: ${{ env.ecs-cluster }}
           wait-for-service-stability: true
