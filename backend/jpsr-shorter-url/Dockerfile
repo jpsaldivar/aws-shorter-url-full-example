@@ -16,6 +16,7 @@ RUN yarn install --frozen-lockfile && yarn cache clean
 FROM node:21.4.0-alpine3.18
 
 WORKDIR /app
+RUN echo 'LS app/dist'
 RUN echo $(ls -1 /app/dist)
 COPY --from=base /app/dist/jpsr-shorter-url .
 COPY --from=base /app/node_modules ./node_modules
