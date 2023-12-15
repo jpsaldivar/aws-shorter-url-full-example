@@ -58,7 +58,7 @@ resource "aws_ecs_service" "ecs_service" {
 }
 
 resource "aws_lb_target_group" "ghost_api" {
-  name        = "ghost-api"
+  name        = "${var.ecs_task.container_image_name}-api"
   port        = var.ecs_task.container_image_port
   protocol    = "HTTP"
   target_type = "ip"
@@ -81,7 +81,7 @@ resource "aws_alb_listener" "http_listener" {
 }
 
 resource "aws_security_group" "ingress_api" {
-  name        = "ingress-api"
+  name        = "ingress-api-${var.ecs_task.container_image_name}"
   description = "Allow ingress to API"
   vpc_id      = var.vpc_id
 
