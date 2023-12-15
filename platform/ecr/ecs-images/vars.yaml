@@ -3,6 +3,7 @@ module: ""
 
 repository_name: "jpsr-shorter-url"
 repository_type: "private"
+repository_image_tag_mutability: "MUTABLE"
 repository_lifecycle_policy: 
   rules: [
     {
