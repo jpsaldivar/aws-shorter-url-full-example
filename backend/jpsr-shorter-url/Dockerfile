@@ -7,7 +7,7 @@ RUN yarn install --frozen-lockfile
 
 ADD . .
 
-RUN yarn nest build @app/jpsr-shorter-url
+RUN yarn build @app/jpsr-shorter-url
 
 ENV NODE_ENV production
 RUN yarn install --frozen-lockfile && yarn cache clean
