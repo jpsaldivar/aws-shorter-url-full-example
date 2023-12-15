@@ -13,7 +13,7 @@ permissions:
 env: 
   app-name: jpsr-shorter-url
   environment: dev
-
+  ecs-cluster: ecs-cluster-backend
 jobs:
   cd:
     name: CD
@@ -39,13 +39,7 @@ jobs:
           IMAGE_TAG: ${{ github.sha }}
           ECR_REPOSITORY: ${{ env.app-name }}
         run: |
-          ls -l 
-          cd backend 
-          ls -l
-          cd ${{ env.app-name }}
-          echo 'Build'
           docker-compose build ${{ env.app-name }}
-          echo 'Push'
           docker-compose push ${{ env.app-name }}
       - name: Generate Task Definition
         id: task-def
@@ -54,6 +48,7 @@ jobs:
           task-definition: backend/${{ env.app-name }}/.aws/${{ env.environment }}-task-definition.json
           container-name: ${{ env.app-name }}
           image: ${{ steps.login-to-ecr.outputs.registry }}/${{ env.app-name }}:${{ github.sha }}
+          cluster: ${{ env.ecs-cluster }}
       - name: Deploy ECS Service
         uses: aws-actions/amazon-ecs-deploy-task-definition@v1
         with:
