@@ -1,9 +1,6 @@
 # Usa una imagen base de Node.js
 FROM node:21.4.0-alpine3.18
 
-# Instala Yarn globalmente en la imagen
-RUN npm install -g yarn
-
 # Crea y establece el directorio de trabajo en la imagen
 WORKDIR /app
 
