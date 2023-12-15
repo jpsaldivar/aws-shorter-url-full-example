@@ -25,9 +25,9 @@ ecs_autoscale_role:
 
 ecs_task: 
   family: "ecs-task-family"
-  container_image_name: "ghost"
+  container_image_name: "jpsr-shorter-url"
   container_image: "ghost:alpine"
-  container_image_port: 2368
+  container_image_port: 3000
   cpu: 256
   memory: 512
   requires_compatibilities: ["FARGATE"]
