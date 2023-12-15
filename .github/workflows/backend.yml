@@ -43,7 +43,9 @@ jobs:
           cd backend 
           ls -l
           cd ${{ env.app-name }}
+          echo 'Build'
           docker-compose build ${{ env.app-name }}
+          echo 'Push'
           docker-compose push ${{ env.app-name }}
       - name: Generate Task Definition
         id: task-def
