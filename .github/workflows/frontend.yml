@@ -3,7 +3,7 @@ on:
     branches:
       - main
     paths:
-      - frontend/jpsr-shorter-url/**
+      - frontend/jpsr-shorter-url-front/**
       - .github/workflows/frontend.yml
 
 permissions:
