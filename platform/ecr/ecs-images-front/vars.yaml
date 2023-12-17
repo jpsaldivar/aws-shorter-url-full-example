@@ -1,0 +1,23 @@
+version: v1.6.0
+module: ""
+
+repository_name: "jpsr-shorter-url-front"
+repository_type: "private"
+repository_image_tag_mutability: "MUTABLE"
+repository_lifecycle_policy: 
+  rules: [
+    {
+      rulePriority: 1,
+      description : "Keep last 10 images",
+      selection: {
+        tagStatus    : "tagged",
+        tagPrefixList: ["v"],
+        countType    : "imageCountMoreThan",
+        countNumber  : 10
+      },
+      action: {
+        type: "expire"
+      }
+    }
+  ]
+  
