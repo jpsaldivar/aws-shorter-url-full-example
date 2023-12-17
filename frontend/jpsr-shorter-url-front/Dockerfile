@@ -1,17 +1,20 @@
+# Usa una imagen base de Node.js
 FROM node:21.4.0-alpine3.18
 
+# Crea y establece el directorio de trabajo en la imagen
 WORKDIR /app
 
-COPY ./dist/jpsr-shorter-url-front/.next ./.next
-COPY ./dist/jpsr-shorter-url-front/public ./public
-COPY ./dist/jpsr-shorter-url-front/next.config.js ./next.config.js
-COPY ./dist/jpsr-shorter-url-front/package.json ./package.json
+# Copia los archivos de la aplicación
+COPY . .
 
-# Uncomment the following line if working on an M1 mac
-# RUN apk add --no-cache python3 g++ make
+# Instala las dependencias del proyecto
+RUN npm install
 
-RUN yarn
+# Compila la aplicación para producción
+RUN npm run build
 
+# Puerto por defecto de Next.js
 EXPOSE 3000
 
-CMD ["node", "-r", "./telemetry/src/lib/tracing", "./node_modules/.bin/next", "start"]
+# Comando para iniciar la aplicación
+CMD ["npm", "start"]
