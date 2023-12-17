@@ -1,0 +1,12 @@
+version: "2"
+services:
+  jpsr-shorter-url-front:
+    container_name: api-jpsr-shorter-url-web
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    image: ${ECR_REGISTRY}/${ECR_REPOSITORY}:${IMAGE_TAG}
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/src:cached
