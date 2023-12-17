@@ -1,0 +1,58 @@
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - frontend/jpsr-shorter-url/**
+      - .github/workflows/frontend.yml
+
+permissions:
+  contents: read
+  id-token: write
+
+env: 
+  app-name: jpsr-shorter-url-front
+  environment: dev
+  ecs-cluster: ecs-cluster-frontend
+jobs:
+  cd:
+    name: CD
+    runs-on: ubuntu-latest
+    environment: dev
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          role-to-assume: arn:aws:iam::027188235773:role/deploy-to-ecs
+          aws-region: us-east-2
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          role-duration-seconds: 1200
+      - name: Login to Amazon ECR
+        id: login-to-ecr
+        uses: aws-actions/amazon-ecr-login@v1
+      - name: Build Docker Image
+        env:
+          ECR_REGISTRY: ${{ steps.login-to-ecr.outputs.registry }}
+          IMAGE_TAG: ${{ github.sha }}
+          ECR_REPOSITORY: ${{ env.app-name }}
+        run: |
+          cd frontend/${{ env.app-name }}
+          docker-compose build ${{ env.app-name }}
+          docker-compose push ${{ env.app-name }}
+      - name: Generate Task Definition
+        id: task-def
+        uses: aws-actions/amazon-ecs-render-task-definition@v1
+        with:
+          task-definition: frontend/${{ env.app-name }}/.aws/${{ env.environment }}-task-definition.json
+          container-name: ${{ env.app-name }}
+          image: ${{ steps.login-to-ecr.outputs.registry }}/${{ env.app-name }}:${{ github.sha }}
+      - name: Deploy ECS Service
+        uses: aws-actions/amazon-ecs-deploy-task-definition@v1
+        with:
+          task-definition: ${{ steps.task-def.outputs.task-definition }}
+          service: ${{ env.app-name }}
+          cluster: ${{ env.ecs-cluster }}
+          wait-for-service-stability: true
