@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import * as fs from 'fs';
-import { S3Service } from './services/s3Service';
+import { S3Service } from './services/s3.service';
 import { ShorterUrlResponse } from './dtos/shorterUrl.dto copy';
 
 @Injectable()
