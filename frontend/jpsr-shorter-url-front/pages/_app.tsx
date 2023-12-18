@@ -6,12 +6,12 @@ import useStorage from "@/components/hooks/useStorage";
 
 export default function App({ Component, pageProps }: AppProps) {
   const [isLoggedIn,setIsLoggedIn] = useState(false)
+  const { getItem } = useStorage();  
+  const emailSession = getItem('emailSession');
 
   useEffect(() => {
-    const { getItem } = useStorage();  
-    const emailSession = getItem('emailSession');
     setIsLoggedIn(emailSession && emailSession !== ""? true : false);
-  }, [])
+  }, [emailSession])
   
   return (
     <Layout isLoggedIn={isLoggedIn} >

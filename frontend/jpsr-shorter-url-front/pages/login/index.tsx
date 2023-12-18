@@ -5,7 +5,8 @@ import useStorage from "@/components/hooks/useStorage";
 import Head from "next/head";
 const LoginPage = () => {
   const router = useRouter();
-  const addLoginData = async (enteredLoginData: any) => {
+  const AddLoginData = async (enteredLoginData: any) => {
+    const { setItem } = useStorage(); 
     const response = await fetch("/api/login", {
       method: "POST",
       body: JSON.stringify(enteredLoginData),
@@ -15,7 +16,6 @@ const LoginPage = () => {
     });
 
     if (response.status === 200) {
-      const { setItem } = useStorage();  
       setItem('emailSession',enteredLoginData.email);
       const data = await response.json();
       router.push("/user");
@@ -27,7 +27,7 @@ const LoginPage = () => {
       <Head>
         <title>Login page</title>
       </Head>
-      <LoginForm addLoginData={addLoginData}  />
+      <LoginForm addLoginData={AddLoginData}  />
     </>
   );
 };
