@@ -1,0 +1,20 @@
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - platform/**
+      - .github/workflows/platform.yml
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  cd:
+    name: CD
+    runs-on: ubuntu-latest
+    environment: dev
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
