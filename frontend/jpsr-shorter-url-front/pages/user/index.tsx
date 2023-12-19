@@ -2,12 +2,24 @@ import useStorage from "@/components/hooks/useStorage";
 import Head from "next/head";
 import ShorterForm from "@/components/shorter/ShorterForm";
 import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
 
 let newUrl = "";
 const UserPage = (props: any) => {
   const { getItem } = useStorage();
   const email = getItem('emailSession');
   const router = useRouter();
+
+  const [isLoggedIn,setIsLoggedIn] = useState(false)
+  useEffect(() => {
+    if(!email || email === ""){
+      router.push('/login');
+    }
+  }, [email]);
+
+
+
+
   
   const getNewUrl = () => {
     return newUrl;
@@ -37,7 +49,7 @@ const UserPage = (props: any) => {
       <Head>
         <title>User data of {email}</title>
       </Head>
-      <h1>Succesfully loggedin</h1>
+      <h1>Succesfully loggedin </h1>
       <h3>{email}</h3>
       <ShorterForm send={send} newUrl={getNewUrl()}/>
     </>

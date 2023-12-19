@@ -1,4 +1,3 @@
-import LoginForm from "@/components/login/LoginForm";
 import { useRouter } from "next/router";
 import useStorage from "@/components/hooks/useStorage";
 
@@ -7,6 +6,7 @@ const LogoutPage = () => {
   const { setItem } = useStorage();
 
   setItem("emailSession","");
+  router.replace(router.asPath);
   return (
     <>
       <h1>Gracias!</h1>
