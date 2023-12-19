@@ -27,9 +27,8 @@ const UserPage = (props: any) => {
 
     if (response.status === 200) {
       const data = await response.json();
-      console.log("DATa",data);
       setNewUrl(data.newUrl);
-      //router.push("/user");
+      router.replace(router.asPath);
     }
   };
 

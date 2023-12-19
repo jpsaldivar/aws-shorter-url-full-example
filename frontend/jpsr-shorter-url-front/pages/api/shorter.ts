@@ -2,7 +2,6 @@
 const handler = async (req:any, res:any) => {
   if (req.method === "POST") {
     const data = req.body;
-    console.log("DATA",data);
     const response = await fetch('http://backend.sbx4.blue.cl/', {
       method: 'PUT',
       headers: {

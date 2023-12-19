@@ -2,8 +2,9 @@ import Card from "../ui/Card";
 import classes from "./ShorterForm.module.css";
 import useInput from "../hooks/useInput";
 import { useRouter } from "next/router";
+
 const validateUrl = (value) => {
-  return value.includes(".");
+  return (value.includes(".") && value.includes("http"));
 };
 
 
@@ -62,7 +63,7 @@ function ShorterForm(props) {
           />
         </div>
         {urlIsInvalid && (
-          <p className={classes["error-text"]}>Please enter valid URL.</p>
+          <p className={classes["error-text"]}>Please enter valid URL. (with http or https)</p>
         )}
 
         <div className={classes.control}>
