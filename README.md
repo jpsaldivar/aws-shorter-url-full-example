@@ -1,12 +1,17 @@
 # aws-shorter-url-full-example
 
+## Documentación
+Puedes encontrar la documentación general del proyecto en la siguiente ruta:
 
-## Platform
-### Dependencias
+[/documentation](documentation/README.md)
+
+## Ejecución local
+### Platform
+#### Dependencias
 - Terraform
 - Terragrunt
 
-### Ejecución
+#### Ejecución
 
 Inicialmente debemos estar ubicados en la carpeta `platform` la cual contiene todo el código IaC con terragrunt
 
@@ -14,13 +19,13 @@ Inicialmente debemos estar ubicados en la carpeta `platform` la cual contiene to
 - Apply `terragrunt run-all apply -check=false`
 - Destroy `terragrunt run-all destroy -check=false`
 
-## Backend
+### Backend
 
-### Dependencias
+#### Dependencias
 - NPM CLI
 - YARN CLI
 
-### Ejecución
+#### Ejecución
 Para ejecutar el proyecto se debe lanzar los siguientes comandos
 
 ```bash
@@ -28,16 +33,16 @@ yarn start:dev
 ```
 
 
-## Frontend
+### Frontend
 
-### Dependencias
+#### Dependencias
 - NPM CLI
 
 
-### Ejecución
+#### Ejecución
 Para ejecutar el proyecto se debe lanzar los siguientes comandos
 
 ```bash
-
+npm run dev
 ```
 
