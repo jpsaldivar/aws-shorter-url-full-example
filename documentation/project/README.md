@@ -88,3 +88,4 @@ Más información sobre los pipelines en la sección [Pipelines](../pipelines/RE
 - Configuración de `route53` mediante IaC
 - Agregar proceso de CI a pipelines (actualmente solo CD)
 - Hooks para desarrollo en ambiente local (estandarización de código, commits, testing, etc)
+- Servicio de Logger para estandarización de trazabilidad

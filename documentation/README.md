@@ -6,6 +6,22 @@ Este repositorio es una POC con esta funcionalidad, la cual incluye las funciona
 
 ![repositorio](assets/repositorio.png)
 
+Funcionalmente se puede aaceder a los siguientes ejemplos:
+
+[APP Frontend](http://web.sbx4.blue.cl/) en [http://web.sbx4.blue.cl](http://web.sbx4.blue.cl/) 
+Acá se puede ingresar con el siguiente usuario de pruebas, el cual tiene un acceso "en duro" sobre el código: 
+
+```
+user: jpsr@bx.cl
+password: 123456
+```
+
+[APP Backend](http://backend.sbx4.blue.cl/) en [http://backend.sbx4.blue.cl](http://backend.sbx4.blue.cl/) usando el siguiente formato para generar una url
+
+```
+curl -X PUT http://backend.sbx4.blue.cl/ -H 'Content-Type: application/json' -d '{"url":"https://google.cl"}'   
+```
+
 
 ## Secciones de documentación
 - [Documentación del proyecto](project/README.md)
