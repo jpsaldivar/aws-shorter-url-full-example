@@ -68,7 +68,7 @@ Más información en [Frontend](frontend/README.md)
 ### S3 
 Todos los archivos con la redirección HTML y la URL de destino se encuentran almacenados en el bucket de S3 llamado `shorter-url-redirects`, el cual fue creado con IaC. 
 
-Este bucket tiene una regla donde cada archivo es **eliminado de forma automática luego de 10 días de creado**, esto con el fin de limpiar disminuir la cantidad de archivos disponibles con un enlace que ya no será usado. Esto es configurable mediante IaC sobre el componente `/platform/s3/shorter-url-redirects/...`.
+Este bucket tiene una regla donde cada archivo es **eliminado de forma automática luego de 10 días de creado**, esto con el fin de limpiar y disminuir la cantidad de archivos disponibles con un enlace que ya no será usado. Esto es configurable mediante IaC sobre el componente `/platform/s3/shorter-url-redirects/...`.
 
 ![S3 expires files](../assets/s3-expire-files.png)
 
