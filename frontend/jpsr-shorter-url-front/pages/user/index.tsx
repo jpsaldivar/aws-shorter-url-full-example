@@ -2,25 +2,21 @@ import useStorage from "@/components/hooks/useStorage";
 import Head from "next/head";
 import ShorterForm from "@/components/shorter/ShorterForm";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 let newUrl = "";
 const UserPage = (props: any) => {
   const { getItem } = useStorage();
   const email = getItem('emailSession');
   const router = useRouter();
-
-  const [isLoggedIn,setIsLoggedIn] = useState(false)
-  useEffect(() => {
-    if(!email || email === ""){
-      router.push('/login');
-    }
-  }, [email]);
-
-
-
-
   
+  // on page Load,if cart is empty redirect to carts page
+  useEffect(() => {
+    if (email === "" || !email) {
+      router.push("/login");
+    }
+  }, [email, router]);
+
   const getNewUrl = () => {
     return newUrl;
   }
