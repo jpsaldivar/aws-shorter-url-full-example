@@ -2,12 +2,14 @@ import { Injectable } from '@nestjs/common';
 import * as fs from 'fs';
 import { S3Service } from './services/s3.service';
 import { ShorterUrlResponse } from './dtos/shorterUrl.dto copy';
+import { ConfigService } from '@nestjs/config';
 
 @Injectable()
 export class AppService {
 
   constructor(
     protected s3Service: S3Service,
+    protected configService: ConfigService
   ) {}
 
   getHello(): string {
@@ -19,8 +21,7 @@ export class AppService {
     var uploaded = await this.s3Service.uploadFileFromString(fileStr);
     const response = new ShorterUrlResponse();
     response.url = url;
-    response.newUrl = `https://shorter-url-redirects.s3.us-east-2.amazonaws.com/${uploaded}/index.html`;
-    console.log("response",response);
+    response.newUrl = `${this.configService.get("REDIRECT_URL")}/${uploaded}`;
     return response;
   }
 

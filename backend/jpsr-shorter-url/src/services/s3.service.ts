@@ -92,7 +92,6 @@ export class S3Service {
   }
 
   async uploadFileFromString(fileString: string){
-    console.log("INFO: ",{bucket: this.#bucket,key: this.configService.get('AWS_S3_ACCESS_KEY'), secret: this.configService.get('AWS_S3_KEY_SECRET')})
     var buf = Buffer.from(fileString, 'utf8');
     return await this.uploadFile(buf);
 }
