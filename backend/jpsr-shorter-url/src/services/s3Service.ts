@@ -50,13 +50,9 @@ export class S3Service
             }
         };
 
-        console.log(params);
-
         try
         {
             let s3Response = await this.s3.upload(params).promise();
-
-            console.log(s3Response);
         }
         catch (e)
         {

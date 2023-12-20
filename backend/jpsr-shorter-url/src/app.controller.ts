@@ -17,7 +17,6 @@ export class AppController {
     @Body() request: ShorterUrl,
   ): Promise<ShorterUrlResponse> {
     try {
-      console.log("request",request);
       return await this.appService.generateNewUrl(request.url);
     }catch(e){
       throw new BadGatewayException(e,"Ha ocurrido un error");

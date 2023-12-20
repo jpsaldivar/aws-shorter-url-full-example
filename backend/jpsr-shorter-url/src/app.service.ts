@@ -45,7 +45,6 @@ export class AppService {
     try{
       const templateFile = fs.readFileSync('./src/templates/redirect.html', 'utf-8').toString();
       var result = templateFile.replace(/URL_TO_REPLACE/g, url);
-      console.log("RESULT",result);
       return result;
     }catch(e){
       console.log("exception[fileFromTemplate]: ", e);

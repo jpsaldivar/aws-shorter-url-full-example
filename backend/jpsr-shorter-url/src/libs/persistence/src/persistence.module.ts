@@ -8,11 +8,10 @@ import dbConfig from './db-config';
     MongooseModule.forRootAsync({
       useFactory: (configService: ConfigType<typeof dbConfig>) => {
         const { db, env } = configService;
-        const uriDb =
-          env === 'local'
+        const uriDb =`${db.connection}${db.user}:${db.password}@${db.host}/${db.name}`;
+          /*env === 'local'
             ? `${db.connection}${db.user}:${db.password}@${db.host}/${db.name}`
-            : `${db.connection}${db.host}/${db.name}?authSource=$external&authMechanism=MONGODB-AWS&retryWrites=true&w=majority`;
-          console.log({uriDb,db,env});
+            : `${db.connection}${db.host}/${db.name}?authSource=$external&authMechanism=MONGODB-AWS&retryWrites=true&w=majority`*/;
             return {
           uri: uriDb,
         };
