@@ -204,6 +204,23 @@ import {
           }
         });
     }
+
+    removeOneByFilter(filter: any): Promise<void> {  
+      return this.model
+        .deleteOne(filter)
+        .catch((error) => {
+          this.throwUnhandledError(
+            error,
+            'delete',
+            `${this.model.name} couldn't be remove`,
+          );
+        })
+        .then((home) => {
+          if (!home) {
+            throw new NotFoundException(`${this.model.name} not found`);
+          }
+        });
+    }
   
     updateMany(
       filter: FilterQuery<T>,

@@ -61,7 +61,6 @@ export class S3Service {
     });
 
     const response = await this.s3Client.send(command);
-
     if (response['$metadata']['httpStatusCode'] != 204)
       throw new Error('An error has ocurred deleting the file');
 

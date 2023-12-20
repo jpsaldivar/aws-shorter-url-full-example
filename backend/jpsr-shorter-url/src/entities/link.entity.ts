@@ -3,7 +3,7 @@ import { Document } from 'mongoose';
 
 @Schema({ timestamps: true })
 export class Link extends Document {
-  @Prop({ type: String, required: false })
+  @Prop({ type: String, required: true })
   code: string;
 
   @Prop({ type: String, required: true })

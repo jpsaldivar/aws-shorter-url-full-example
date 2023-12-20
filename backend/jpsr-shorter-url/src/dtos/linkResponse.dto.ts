@@ -12,6 +12,10 @@ import {
 
     @IsNotEmpty()
     @IsString()
+    code: string;
+
+    @IsNotEmpty()
+    @IsString()
     url: string;
 
     @IsNotEmpty()

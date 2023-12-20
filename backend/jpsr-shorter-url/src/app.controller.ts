@@ -1,15 +1,16 @@
-import { BadGatewayException, Body, Controller, Get, Param, Put } from '@nestjs/common';
+import { BadGatewayException, Body, Controller, Delete, Get, Param, Put } from '@nestjs/common';
 import { AppService } from './app.service';
 import { ShorterUrl } from './dtos/shorterUrl.dto';
 import { ShorterUrlResponse } from './dtos/shorterUrl.dto copy';
+import { LinkResponseDTO } from './dtos/linkResponse.dto';
 
 @Controller()
 export class AppController {
   constructor(private readonly appService: AppService) {}
 
   @Get()
-  getHello(): string {
-    return this.appService.getHello();
+  async getLinks(): Promise<LinkResponseDTO[]> {
+    return await this.appService.getAllLinks();
   }
 
   @Put()
@@ -21,5 +22,12 @@ export class AppController {
     }catch(e){
       throw new BadGatewayException(e,"Ha ocurrido un error");
     }
+  }
+
+  @Delete('/:code')
+  async deleteLink(
+    @Param('code') code: string,
+  ): Promise<void> {
+    return await this.appService.deleteLink(code);
   }
 }

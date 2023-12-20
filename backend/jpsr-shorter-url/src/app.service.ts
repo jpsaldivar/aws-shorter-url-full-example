@@ -1,10 +1,11 @@
-import { Injectable } from '@nestjs/common';
+import { BadGatewayException, Injectable } from '@nestjs/common';
 import * as fs from 'fs';
 import { S3Service } from './services/s3.service';
 import { ShorterUrlResponse } from './dtos/shorterUrl.dto copy';
 import { ConfigService } from '@nestjs/config';
 import { LinkService } from './services/link.service';
 import { Link } from './entities/link.entity';
+import { LinkResponseDTO } from './dtos/linkResponse.dto';
 
 @Injectable()
 export class AppService {
@@ -50,5 +51,29 @@ export class AppService {
       console.log("exception[fileFromTemplate]: ", e);
       return null;
     }
+  }
+
+  async getAllLinks(): Promise<LinkResponseDTO[]>{
+    return await this.linkService.find({});
+  }
+
+  async deleteLink(code: string): Promise<void> {
+
+    try{
+      //Se elimina el index.html 
+      await this.s3Service.deleteS3File(`${code}/index.html`);
+
+      //Se elimina la carpeta
+      await this.s3Service.deleteS3File(`${code}`);
+
+      //Se elimina el registro en DB
+      await this.linkService.removeOneByFilter({ code });
+    }catch(e){
+      console.log("exception[fileFromTemplate]: ", e);
+      throw new BadGatewayException('An error has ocurred deleting the file');
+    }
+    
+
+    return;
   }
 }

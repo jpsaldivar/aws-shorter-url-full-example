@@ -18,6 +18,7 @@ export class LinkService extends AbstractCrudHandler<Link> {
     protected mapEntityToDto(record: Link): LinkResponseDTO {
         const res = new LinkResponseDTO();
         res.id = record._id.toHexString();
+        res.code = record.code;
         res.lastAccess = record.lastAccess;
         res.url = record.url;
         res.newUrl = record.newUrl;
