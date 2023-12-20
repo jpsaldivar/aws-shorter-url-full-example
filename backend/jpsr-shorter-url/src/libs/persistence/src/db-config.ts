@@ -11,6 +11,5 @@ export default registerAs('dbConfig', () => {
     },
     env: process.env.NODE_ENV || 'local',
   };
-  console.log(dbConfig);
   return dbConfig;
 });
