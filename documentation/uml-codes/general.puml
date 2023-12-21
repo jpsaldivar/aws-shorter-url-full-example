@@ -1,0 +1,45 @@
+@startuml "general"
+!theme aws-orange
+header Short URL
+footer Short URL
+title Digrama flujo general
+
+autonumber "<b>[00]"
+
+
+actor user as "ARC" order 0
+participant front as "Front" order 10
+participant backend as "Backend" order 20
+database db as "MongoDB" order 30
+participant s3 as "S3" order 40
+boundary cloudfront as "Cloudfront" order 50 
+
+== Creación de una URL corta ==
+user -> front: Accede a web
+front --> user: Login
+user -> front: Datos de acceso
+front -> user: Vista acortar URL
+user -> front: Url larga
+front -> backend: [PUT] Crear url corta
+backend -> s3: Objeto de redirección 
+note right
+    De la forma:
+    XXYYZZ/index.html
+end note
+s3 --> backend: 
+backend -> db: Crear registro con datos procesados
+db --> backend:
+backend --> front: Mensaje
+
+== Acceso a una URL corta ==
+user -> cloudfront: Accede a URL
+cloudfront -> s3: Obtiene objeto
+s3 --> cloudfront: HTML
+cloudfront --> user: HTML 
+note right
+    La redirección es u html almacenado en el backend bajo
+    /src/templates/redirect.html
+    El cual tiene una configuración de redirigir luego de 3 segudos.
+end note
+
+@enduml
