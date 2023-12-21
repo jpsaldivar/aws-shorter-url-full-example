@@ -53,6 +53,10 @@ export class AppService {
     }
   }
 
+  async getOneLink(code: string): Promise<LinkResponseDTO[]>{
+    return await this.linkService.findOne({code});
+  }
+
   async getAllLinks(): Promise<LinkResponseDTO[]>{
     return await this.linkService.find({});
   }

@@ -13,6 +13,13 @@ export class AppController {
     return await this.appService.getAllLinks();
   }
 
+  @Get('/:code')
+  async getOneLinks(
+    @Param('code') code: string
+  ): Promise<LinkResponseDTO[]> {
+    return await this.appService.getOneLink(code);
+  }
+
   @Put()
   async generateNewUrl(
     @Body() request: ShorterUrl,
