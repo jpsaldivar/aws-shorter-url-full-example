@@ -1,5 +1,10 @@
 # aws-shorter-url-full-example
 
+## Descripción del problema
+
+[problem.md](problem.md)
+
+
 ## Documentación
 Puedes encontrar la documentación general del proyecto en la siguiente ruta:
 
